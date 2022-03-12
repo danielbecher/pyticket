@@ -27,12 +27,16 @@ class Tickets(models.Model):
     def get_hora_ticket(self):
         return self.data_abertura.strftime('%H:%M')
 
+    def get_data_hora_ticket(self):
+        return self.data_abertura.strftime('%Y-%m-%d %H:%M')
+
+
 class Interacoes(models.Model):
     id_usuario = models.CharField(max_length=50, null=False)
     interacao = models.TextField(blank=False, null=False)
     data_criacao = models.DateTimeField(auto_now=True)
     chamado = models.ForeignKey(Tickets, on_delete=models.CASCADE)
-    anexo = models.FileField(upload_to='uploads/')
+    anexo = models.FileField(upload_to='uploads/', blank=True, null=True)
 
     def __str__(self):
-        return self.id_usuario
+        return self.chamado

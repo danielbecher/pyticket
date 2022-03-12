@@ -26,4 +26,9 @@ urlpatterns = [
     path('logout/', views.logout_user),
     path('tickets/', views.tickets_list),
     path('tickets/ticket/', views.ticket),
+    path('tickets/ticket/submit', views.ticket_submit),
+    path('tickets/ticket/submit2', views.ticket_submit2),
+    path('tickets/ticket/delete/<int:id_ticket>/', views.ticket_delete),
+    path('tickets/fecha/', views.ticket_fecha),
+    path('tickets/abre/', views.ticket_abre)
 ]

@@ -5,20 +5,40 @@
 <section class="ticket">
     <h2 class="ticket__titulo">Ticket # {{ ticket.id }}</h2>
     <form action="submit" method="POST">{% csrf_token %}
-        <input type="text" name="id_ticket" value="{{ id.ticket }}" hidden>
+        <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
         <label class="ticket__label">Assunto</label>
         <input class="ticket_input" type="text" name="assunto" value="{{ ticket.assunto }}">
         <label class="ticket__label">Ocorrência</label>
         <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
         <label class="ticket__label">Data de abertura</label>
-        <input class="ticket__input" type="datetime-local" name="data_abertura" value="{{ ticket.data_abertura }}">
+        <input class="ticket__input" type="input" name="data_abertura" value="{{ ticket.get_data_hora_ticket }}">
         <label class="ticket__label">Status</label>
-        <input class="ticket__input" type="text" name="status" value="{{ ticket.status }}">
+        <select class="ticket__input" type="text" name="status" value="{{ ticket.status }}">
+            <option {% if ticket.status == 'Aberto' %} selected {% endif %}>Aberto</option>
+            <option {% if ticket.status == 'Fechado' %} selected {% endif %}>Fechado</option>
+            <option {% if ticket.status == 'Aguardando' %} selected {% endif %}>Aguardando</option>
+        </select>
         <label class="ticket__label">Prioridade</label>
-        <input class="ticket__input" type="text" name="prioridade" value="{{ ticket.prioridade }}">
-    
+        <select class="ticket__input" type="text" name="prioridade" value="{{ opcao }}">
+            {% for opcao in ticket.prioridadesChoices %}<option>{{ opcao }} </option>{% endfor %}
+        </select>
+        <button class="ticket__button" type="submit">Salvar</button>
 
     </form>
+    <section class="interacoes">
+        <h2 class="ticket__subtitulo">Interações</h2>
+        {% for itens in interacoes %}
+            <p class="ticket__interacao--texto">{{ itens.interacao }}</p>
+            <p class="ticket__interacao--data"> {{ itens.data_criacao }}</p>
+        {% endfor %}
+        <h3 class="ticket__interacao--textosub">Adicionar resposta</h3>
+        <form action="submit2" method="POST">{% csrf_token %}
+            <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
+            <label class="ticket__label">Resposta</label>
+            <textarea class="ticket__input" name="resposta" rows=10 cols=20></textarea>
+            <button class="ticket__button" type="submit2">Adicionar</button>
+        </form>
+    </section>
 </section>
 
 {% endblock %}

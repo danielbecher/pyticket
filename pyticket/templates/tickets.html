@@ -6,8 +6,8 @@
     <h2 class="tickets__titulo">Tickets</h2>
     <ul class="tickets__lista">
         {% for ticket in tickets %}
-        <li class="tickets__lista--item">
-            {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} [<a href="ticket/?id={{ ticket.id }}">Ver</a> | Fechar]
+        <li class="tickets__lista--item"> 
+            {% if ticket.status == 'Fechado' %} <div style="text-decoration: line-through;"> {% endif %} {{ get_ticket_fechado }} {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} [{{ ticket.status}}] [<a href="ticket/?id={{ ticket.id }}">Ver</a> {% if ticket.status == 'Aberto' or ticket.status == 'Aguardando' %} | <a href="fecha/?id={{ ticket.id }}">Fechar</a> {% endif %} {% if ticket.status == 'Fechado' %} | <a href="abre/?id={{ ticket.id }}">Reabrir</a>{% endif %} </div>
         </li> {% endfor %}
     </ul>
 </main>
