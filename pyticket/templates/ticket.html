@@ -28,7 +28,7 @@
     <section class="interacoes">
         <h2 class="ticket__subtitulo">Interações</h2>
         {% for itens in interacoes %}
-            <p class="ticket__interacao--texto">{{ itens.interacao }}</p>
+            <p class="ticket__interacao--texto">{{ itens.interacao }} por {{ itens.id_usuario }}</p>
             <p class="ticket__interacao--data"> {{ itens.data_criacao }}</p>
         {% endfor %}
         <h3 class="ticket__interacao--textosub">Adicionar resposta</h3>

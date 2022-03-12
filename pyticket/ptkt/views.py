@@ -81,7 +81,7 @@ def ticket_submit(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
-def ticket_submit2(request):
+def interacao_submit(request):
     usuario = request.user
     id_ticket = request.POST.get('id_ticket')
     resposta = request.POST.get('resposta')
@@ -90,8 +90,6 @@ def ticket_submit2(request):
                                 interacao=resposta)
         
     return redirect('/')
-
-
 
 @login_required(login_url='/login/')
 def ticket_delete(request, id_ticket):
@@ -112,6 +110,15 @@ def ticket_fecha(request):
     ticket = Tickets.objects.get(id=ticketid)
     if ticketid:
         ticket.status = "Fechado"
+        ticket.save()
+    return redirect('/')
+
+@login_required(login_url='/login/')
+def ticket_aguarda(request):
+    ticketid = request.GET.get('id')
+    ticket = Tickets.objects.get(id=ticketid)
+    if tickedid:
+        ticket.status = "Aguardando"
         ticket.save()
     return redirect('/')
 
