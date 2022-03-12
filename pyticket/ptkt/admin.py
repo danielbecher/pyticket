@@ -1,3 +1,7 @@
 from django.contrib import admin
+from ptkt.models import Tickets
 
-# Register your models here.
+class ticketsAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'assunto', 'status', 'prioridade', 'data_abertura')
+
+admin.site.register(Tickets, ticketsAdmin)

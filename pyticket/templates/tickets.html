@@ -1,0 +1,14 @@
+{% extends "modelo.html" %}
+
+{% block content %}
+
+<main class="tickets">
+    <h2 class="tickets__titulo">Tickets</h2>
+    <ul class="tickets__lista">
+        {% for ticket in tickets %}
+        <li class="tickets__lista--item">
+            {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }}
+        </li> {% endfor %}
+    </ul>
+</main>
+{% endblock %}

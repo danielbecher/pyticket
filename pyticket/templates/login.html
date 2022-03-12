@@ -1,0 +1,17 @@
+{% load static %}
+{% include "header.html" %}
+
+<h1>Login</h1>
+
+<main class="login">
+    <form class="login__form" action="submit" method="POST">{% csrf_token %} 
+        <label class="login__label">Usuário</label>
+        <input class="login__input" type="text" name="usuario">
+        <label class="login__label">Senha</label>
+        <input class="login__input" type="password" name="senha">
+        <button class="login__button" type="submit">Entrar</button>
+        {% for message in messages %}
+            <p class="login__erro">Erro: {{ message }}</p>
+        {% endfor %}
+    </form>
+</main>
