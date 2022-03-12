@@ -1,0 +1,26 @@
+{% extends "modelo.html" %}
+
+{% block content %}
+
+<section class="ticket">
+    <h2 class="ticket__titulo">Novo ticket {{ ticket.id }}</h2>
+    <form action="criarsubmit/" method="POST">{% csrf_token %}
+        <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
+        <label class="ticket__label">Assunto</label>
+        <input class="ticket_input" type="text" name="assunto" value="{{ ticket.assunto }}">
+        <label class="ticket__label">Ocorrência</label>
+        <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
+        <label class="ticket__label">Data de abertura</label>
+        <input class="ticket__input" type="input" name="data_abertura" value="{{ ticket.get_data_hora_ticket }}">
+        <label class="ticket__label">Prioridade</label>
+        <select class="ticket__input" type="text" name="prioridade" value="{{ ticket.prioridade }}">
+            <option selected>Baixa</option>
+            <option>Média</option>
+            <option>Alta</option>
+        </select>
+        <label class="ticket__label">Prioridade</label>
+        <button class="ticket__button" type="criarsubmit">Salvar</button>
+    </form>
+</section>
+
+{% endblock %}

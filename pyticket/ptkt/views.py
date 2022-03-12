@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime
 from django.http.response import Http404
-from django.http import JsonResponse
 
 def login_user(request):
     return render(request, 'login.html')
@@ -80,6 +79,25 @@ def ticket_submit(request):
                                   status = status)        
     return redirect('/')
 
+def ticket_criar(request):        
+    return render(request, 'criarticket.html')
+
+@login_required(login_url='/login/')
+def ticket_criar_submit(request):
+    usuario = request.user
+    assunto = request.POST.get('assunto')
+    descricao = request.POST.get('descricao')
+    status = "Aberto"
+    data_abertura = datetime.now()
+    prioridade = request.POST.get('prioridade')
+    Tickets.objects.create(assunto=assunto,
+                                  data_abertura=data_abertura,
+                                  descricao=descricao,
+                                  usuario=usuario,
+                                  prioridade = prioridade,
+                                  status = status)      
+    return redirect('/')
+
 @login_required(login_url='/login/')
 def interacao_submit(request):
     usuario = request.user
@@ -88,7 +106,7 @@ def interacao_submit(request):
     Interacoes.objects.create(id_usuario=usuario,
                                 chamado_id=id_ticket,
                                 interacao=resposta)
-        
+    ticket_aguarda(id_ticket)
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -114,15 +132,6 @@ def ticket_fecha(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
-def ticket_aguarda(request):
-    ticketid = request.GET.get('id')
-    ticket = Tickets.objects.get(id=ticketid)
-    if tickedid:
-        ticket.status = "Aguardando"
-        ticket.save()
-    return redirect('/')
-
-@login_required(login_url='/login/')
 def ticket_abre(request):
     ticketid = request.GET.get('id')
     ticket = Tickets.objects.get(id=ticketid)
@@ -130,3 +139,11 @@ def ticket_abre(request):
         ticket.status = "Aberto"
         ticket.save()
     return redirect('/')
+
+
+#Funções sem rota
+def ticket_aguarda(id):
+    ticket = Tickets.objects.get(id=id)
+    if id:
+        ticket.status = "Aguardando"
+        ticket.save()

@@ -23,22 +23,23 @@
             {% for opcao in ticket.prioridadesChoices %}<option>{{ opcao }} </option>{% endfor %}
         </select>
         <button class="ticket__button" type="submit">Salvar</button>
-
     </form>
-    <section class="interacoes">
-        <h2 class="ticket__subtitulo">Interações</h2>
-        {% for itens in interacoes %}
-            <p class="ticket__interacao--texto">{{ itens.interacao }} por {{ itens.id_usuario }}</p>
-            <p class="ticket__interacao--data"> {{ itens.data_criacao }}</p>
-        {% endfor %}
-        <h3 class="ticket__interacao--textosub">Adicionar resposta</h3>
-        <form action="submit2" method="POST">{% csrf_token %}
-            <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
-            <label class="ticket__label">Resposta</label>
-            <textarea class="ticket__input" name="resposta" rows=10 cols=20></textarea>
-            <button class="ticket__button" type="submit2">Adicionar</button>
-        </form>
-    </section>
 </section>
+    
+<section class="interacoes">
+    <h2 class="ticket__subtitulo">Interações</h2>
+    {% for itens in interacoes %}
+        <p class="ticket__interacao--texto">{{ itens.interacao }} por {{ itens.id_usuario }}</p>
+        <p class="ticket__interacao--data"> {{ itens.data_criacao }}</p>
+    {% endfor %}
+    <h3 class="ticket__interacao--textosub">Adicionar resposta</h3>
+    <form action="interacaosubmit" method="POST">{% csrf_token %}
+        <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
+        <label class="ticket__label">Resposta</label>
+        <textarea class="ticket__input" name="resposta" rows=10 cols=20></textarea>
+        <button class="ticket__button" type="interacaosubmit">Adicionar</button>
+    </form>
+</section>
+
 
 {% endblock %}
