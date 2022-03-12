@@ -42,5 +42,10 @@ def tickets_list(request):
     dados = {'tickets': ticket}
     return render(request, 'tickets.html', dados)
 
-
-
+@login_required(login_url='/login/')
+def ticket(request):
+    id_ticket = request.GET.get('id')
+    dados = {}
+    if id_ticket:
+        dados['ticket'] = Tickets.objects.get(id=id_ticket)
+    return render(request, 'ticket.html', dados)

@@ -1,0 +1,24 @@
+{% extends "modelo.html" %}
+
+{% block content %}
+
+<section class="ticket">
+    <h2 class="ticket__titulo">Ticket # {{ ticket.id }}</h2>
+    <form action="submit" method="POST">{% csrf_token %}
+        <input type="text" name="id_ticket" value="{{ id.ticket }}" hidden>
+        <label class="ticket__label">Assunto</label>
+        <input class="ticket_input" type="text" name="assunto" value="{{ ticket.assunto }}">
+        <label class="ticket__label">Ocorrência</label>
+        <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
+        <label class="ticket__label">Data de abertura</label>
+        <input class="ticket__input" type="datetime-local" name="data_abertura" value="{{ ticket.data_abertura }}">
+        <label class="ticket__label">Status</label>
+        <input class="ticket__input" type="text" name="status" value="{{ ticket.status }}">
+        <label class="ticket__label">Prioridade</label>
+        <input class="ticket__input" type="text" name="prioridade" value="{{ ticket.prioridade }}">
+    
+
+    </form>
+</section>
+
+{% endblock %}

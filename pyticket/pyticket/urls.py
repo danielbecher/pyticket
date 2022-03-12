@@ -19,10 +19,11 @@ from ptkt import views
 from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/tickets')),
     path('admin/', admin.site.urls),
     path('login/', views.login_user ),
     path('login/submit', views.submit_login),
     path('logout/', views.logout_user),
-    path('tickets/', views.tickets_list)
-
+    path('tickets/', views.tickets_list),
+    path('tickets/ticket/', views.ticket),
 ]

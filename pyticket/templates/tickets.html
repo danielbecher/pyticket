@@ -7,7 +7,7 @@
     <ul class="tickets__lista">
         {% for ticket in tickets %}
         <li class="tickets__lista--item">
-            {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }}
+            {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} [<a href="ticket/?id={{ ticket.id }}">Ver</a> | Fechar]
         </li> {% endfor %}
     </ul>
 </main>
