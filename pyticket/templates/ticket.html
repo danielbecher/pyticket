@@ -2,15 +2,14 @@
 
 {% block content %}
 <section class="ticket">
-    <h2 class="ticket__titulo">Ticket # {{ ticket.id }}</h2>
+    <h2 class="ticket__titulo">Ticket # {{ ticket.id }} - {{ ticket.get_data_ticket }} {{ ticket.get_hora_ticket }}</h2>
+    <h3 class="ticket__subtitulo" style="text-align:center;">por {{ ticket.usuario}}</h3>
     <form action="submit" method="POST">{% csrf_token %}
         <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
         <label class="ticket__label">Assunto</label>
         <input class="ticket__input" type="text" name="assunto" value="{{ ticket.assunto }}">
         <label class="ticket__label">Ocorrência</label>
         <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
-        <label class="ticket__label">Data de abertura</label>
-        <input class="ticket__input" type="input" name="data_abertura" value="{{ ticket.get_data_hora_ticket }}">
         <label class="ticket__label">Status</label>
         <select class="ticket__input" type="text" name="status" value="{{ ticket.status }}">
             <option {% if ticket.status == 'Aberto' %} selected {% endif %}>Aberto</option>

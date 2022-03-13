@@ -36,6 +36,8 @@ class Tickets(models.Model):
     def get_primeiro_nome(self):
         return User.get_short_name(self.usuario)
 
+    def email_check(self):
+        return User.email
 
 class Interacoes(models.Model):
     id_usuario = models.CharField(max_length=50, null=False)

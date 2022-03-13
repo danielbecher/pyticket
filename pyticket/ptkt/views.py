@@ -1,6 +1,6 @@
-from re import I
+import email
 from django.shortcuts import render, redirect
-from ptkt.models import Tickets, Interacoes
+from ptkt.models import Tickets, Interacoes, User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -37,9 +37,9 @@ def logout_user(request):
 
 @login_required(login_url='/login/')
 def tickets_list(request):
-    username = request.user
+    usuario = request.user
     data_atual = datetime.now()
-    ticket = Tickets.objects.all()
+    ticket = Tickets.objects.filter(usuario_id=usuario)
     dados = {'tickets': ticket}
     return render(request, 'tickets.html', dados)
 
@@ -107,6 +107,9 @@ def interacao_submit(request):
                                 chamado_id=id_ticket,
                                 interacao=resposta)
     ticket_aguarda(id_ticket)
+    emailsnotify = pegaEmails(id_ticket)
+    for email in emailsnotify:
+        notificaMail("Olá! Tem uma nova interação para o seu ticket. Para ler e responder, acesse: {}".format("https://localhost:8000/"), "Aviso de movimentação de ticket", email)
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -129,6 +132,11 @@ def ticket_fecha(request):
     if ticketid:
         ticket.status = "Fechado"
         ticket.save()
+    
+    emailsnotify = pegaEmails(ticketid)
+    for email in emailsnotify:
+        notificaMail("Olá! O seu ticket foi fechado! Caso precise de algo mais é só abrir um novo ticket. Para acompanhar o histórico deste ticket ou abrir um novo, acesse: {}".format("https://localhost:8000/"), "Aviso de movimentação de ticket", email)
+
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -147,3 +155,61 @@ def ticket_aguarda(id):
     if id:
         ticket.status = "Aguardando"
         ticket.save()
+
+#Notificações por e-mail
+#Faz a notificação de que um link foi gerado, ou um erro aconteceu.
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+def pegaEmails(idticket):
+    ticket = Tickets.objects.get(id=idticket)
+    interacoes = Interacoes.objects.filter(chamado_id=idticket)
+    usuariosInteracoes = []
+    emailsinteracoes = []
+
+    for usuarios in interacoes:
+        if usuarios not in usuariosInteracoes:
+            usuariosInteracoes.append(usuarios.id_usuario)
+    
+    for usr in usuariosInteracoes:
+        if usr not in emailsinteracoes:
+            emailsinteracoes.append(pegaUsuario(usr))
+    
+    if pegaUsuario(ticket.usuario) not in emailsinteracoes:
+        emailsinteracoes.append(pegaUsuario(ticket.usuario))
+
+    return emailsinteracoes
+    
+def pegaUsuario(user):
+    usuario = User.objects.get(username=user)
+    email = usuario.email
+    return email
+    
+
+def notificaMail(msg,subj,destinatario):
+    senha = conectMail()
+    host = 'smtp.gmail.com'
+    port = 587
+    user = 'ti@sotepa.com.br'
+    server = smtplib.SMTP(host,port)
+
+    server.ehlo()
+    server.starttls()
+    server.login(user, senha)
+
+    message = msg
+    subject = subj
+    email_msg = MIMEMultipart()
+    email_msg['From'] = user
+    email_msg['To'] = destinatario
+    email_msg['Subject'] = subject
+
+    email_msg.attach(MIMEText(message, 'plain'))
+
+    server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
+    server.quit()
+
+def conectMail():
+    mailPass = ''
+    return mailPass

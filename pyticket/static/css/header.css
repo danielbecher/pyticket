@@ -1,9 +1,9 @@
 .header {
     display: flex;
     align-items: center;
+    flex-direction: column;
     background-color: #e8fdff;
     padding: 10px 30px;
-    justify-content: center;
 }
 
 .header__titulo {
@@ -18,5 +18,5 @@
 
 .header__lista--item {
     list-style-type: none;
-    margin: 5px 15px;
+    margin: 3px 20px;
 }

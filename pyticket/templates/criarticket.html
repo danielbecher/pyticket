@@ -10,8 +10,6 @@
         <input class="ticket__input" type="text" name="assunto" value="{{ ticket.assunto }}">
         <label class="ticket__label">Ocorrência</label>
         <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
-        <label class="ticket__label">Data de abertura</label>
-        <input class="ticket__input" type="input" name="data_abertura" value="{{ ticket.get_data_hora_ticket }}">
         <label class="ticket__label">Prioridade</label>
         <select class="ticket__input" type="text" name="prioridade" value="{{ ticket.prioridade }}">
             <option selected>Baixa</option>

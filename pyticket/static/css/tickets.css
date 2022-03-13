@@ -12,25 +12,24 @@
 .tickets__titulo--subtitulo {
     background-color: #f0faff;
     display: flex;
-    padding: 3px 5px; 
+    padding: 7px 15px; 
 }
 
 .tickets__titulo--subtituloaguardando {
     background-color: #ffe8d4;
     display: flex;
-    padding: 3px 5px;  
+    padding: 7px 15px;  
 }
 
 .tickets__titulo--subtitulofechado {
     background-color: #ffe6e3;
     display: flex;
-    padding: 3px 5px;  
+    padding: 7px 15px;
 }
 
 .tickets__lista--abertos {
     display: flex;
     flex-direction: column;
-    
 }
 
 .tickets__lista--aguardando {
