@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #e8fdff;
+    padding: 10px 30px;
+    justify-content: center;
+}
+
+.header__titulo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.header__lista {
+    display: flex;
+    flex-direction: row;
+}
+
+.header__lista--item {
+    list-style-type: none;
+    margin: 5px 15px;
+}

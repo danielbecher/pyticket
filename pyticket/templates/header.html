@@ -1,15 +1,20 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Tickets</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static '/css/tickets.css' %}">
+    <link rel="stylesheet" href="{% static '/css/criarticket.css' %}">
+    <link rel="stylesheet" href="{% static '/css/header.css' %}">
+    <link rel="stylesheet" href="{% static '/css/footer.css' %}">
+    <link rel="stylesheet" href="{% static '/css/ticket.css' %}">
 </head>
 <body>
     <header class="header">
-        <p class="header__titulo">Sistema de Agenda</p>
+        <p class="header__titulo">Sistema de Tickets</p>
         <nav class="header__menu">
             <ul class="header__lista">
                 <li class="header__lista--item"><a href="/tickets">Home</a></li>

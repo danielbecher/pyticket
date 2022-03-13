@@ -4,10 +4,10 @@
 
 <section class="ticket">
     <h2 class="ticket__titulo">Novo ticket {{ ticket.id }}</h2>
-    <form action="criarsubmit/" method="POST">{% csrf_token %}
+    <form class="ticket__form" action="criarsubmit/" method="POST">{% csrf_token %}
         <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
         <label class="ticket__label">Assunto</label>
-        <input class="ticket_input" type="text" name="assunto" value="{{ ticket.assunto }}">
+        <input class="ticket__input" type="text" name="assunto" value="{{ ticket.assunto }}">
         <label class="ticket__label">Ocorrência</label>
         <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
         <label class="ticket__label">Data de abertura</label>
@@ -18,8 +18,7 @@
             <option>Média</option>
             <option>Alta</option>
         </select>
-        <label class="ticket__label">Prioridade</label>
-        <button class="ticket__button" type="criarsubmit">Salvar</button>
+        <button class="ticket__button" type="criarsubmit">Abrir ticket</button>
     </form>
 </section>
 

@@ -1,0 +1,16 @@
+.ticket__interacao:nth-child(2n) {
+    background-color: #fff6db;
+    padding: 10px 10px;
+}
+
+.ticket__interacao:nth-child(1n) {
+    padding: 10px 10px;
+}
+
+.ticket__interacao--texto {
+    font-size: 17px;
+}
+
+.ticket__interacao--data {
+    font-size: 12px;
+}

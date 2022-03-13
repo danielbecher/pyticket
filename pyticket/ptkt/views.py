@@ -39,7 +39,7 @@ def logout_user(request):
 def tickets_list(request):
     username = request.user
     data_atual = datetime.now()
-    ticket = Tickets.objects.filter(usuario=username)
+    ticket = Tickets.objects.all()
     dados = {'tickets': ticket}
     return render(request, 'tickets.html', dados)
 

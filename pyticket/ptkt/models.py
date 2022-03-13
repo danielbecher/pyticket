@@ -29,6 +29,12 @@ class Tickets(models.Model):
 
     def get_data_hora_ticket(self):
         return self.data_abertura.strftime('%Y-%m-%d %H:%M')
+    
+    def get_nome_usuario(self):
+        return User.get_full_name(self.usuario)
+    
+    def get_primeiro_nome(self):
+        return User.get_short_name(self.usuario)
 
 
 class Interacoes(models.Model):

@@ -1,0 +1,67 @@
+.tickets__titulo {
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.tickets__titulo--headline {
+    display: flex;
+    justify-content: center;
+}
+
+.tickets__titulo--subtitulo {
+    background-color: #f0faff;
+    display: flex;
+    padding: 3px 5px; 
+}
+
+.tickets__titulo--subtituloaguardando {
+    background-color: #ffe8d4;
+    display: flex;
+    padding: 3px 5px;  
+}
+
+.tickets__titulo--subtitulofechado {
+    background-color: #ffe6e3;
+    display: flex;
+    padding: 3px 5px;  
+}
+
+.tickets__lista--abertos {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tickets__lista--aguardando {
+    display: flex;
+    flex-direction: column;   
+}
+
+.tickets__lista--fechados {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tickets__lista--item {
+    display: flex;
+    padding: 5px 5px;
+}
+
+.tickets__lista--itemfechado {
+    display: flex;
+    padding: 5px 5px;
+    color: #d10a0a;
+}
+
+.tickets__links {
+    text-decoration: none;
+    color: #154a99;
+    padding: 0 2px;
+}
+
+.tickets__links:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
