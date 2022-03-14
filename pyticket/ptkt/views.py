@@ -6,6 +6,7 @@ from django.contrib import messages
 from datetime import datetime
 from django.http.response import Http404
 
+#seta url
 urlAdmin = "http://pyticket.becher.com.br"
 emailAssuntosUsuarios = ["Alerta de novo ticket criado", "Você criou um novo ticket e em breve ele será analisado por alguém do suporte. Para acompanhar, acesse http://localhost:8000", "Seu ticket recebeu uma resposta", "Seu ticket foi respondido, é possível que você precise respondê-lo ou encerrá-lo. Para verificar, acesse http://localhost:8000",
                 "Ticket encerrado", "Seu ticket foi encerrado. Para visualizar o histórico, acesse https://localhost:8000"]
