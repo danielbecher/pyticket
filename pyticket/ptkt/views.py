@@ -1,4 +1,3 @@
-import email
 from django.shortcuts import render, redirect
 from ptkt.models import Tickets, Interacoes, User
 from django.contrib.auth.decorators import login_required
@@ -6,6 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime
 from django.http.response import Http404
+
+urlAdmin = "http://localhost:8000"
+emailAssuntoCriacao = "Alerta de novo ticket criado"
 
 def login_user(request):
     return render(request, 'login.html')
@@ -26,7 +28,6 @@ def submit_login(request):
 def tickets(request):
     id_tickets = request.GET.get('id')
     dados = {}
-    dados2 = {}
     if id_tickets:
         dados['tickets'] = Tickets.objects.get(id=id_tickets)
     return render(request, 'ticket.html', dados)
@@ -96,6 +97,8 @@ def ticket_criar_submit(request):
                                   usuario=usuario,
                                   prioridade = prioridade,
                                   status = status)      
+    
+    notificaMail("O usuário {} criou um ticket com a prioridade {}. Veja aqui mesmo este ticket: {}".format(usuario, prioridade, urlAdmin), emailAssuntoCriacao, "daniel@becher.com.br")
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -109,7 +112,7 @@ def interacao_submit(request):
     ticket_aguarda(id_ticket)
     emailsnotify = pegaEmails(id_ticket)
     for email in emailsnotify:
-        notificaMail("Olá! Tem uma nova interação para o seu ticket. Para ler e responder, acesse: {}".format("https://localhost:8000/"), "Aviso de movimentação de ticket", email)
+        notificaMail("Olá! Tem uma nova interação para o seu ticket número {}. Para ler e responder, acesse: {}".format(id_ticket, "https://localhost:8000/"), "Aviso de movimentação de ticket", email)
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -135,7 +138,7 @@ def ticket_fecha(request):
     
     emailsnotify = pegaEmails(ticketid)
     for email in emailsnotify:
-        notificaMail("Olá! O seu ticket foi fechado! Caso precise de algo mais é só abrir um novo ticket. Para acompanhar o histórico deste ticket ou abrir um novo, acesse: {}".format("https://localhost:8000/"), "Aviso de movimentação de ticket", email)
+        notificaMail("Olá! O seu ticket foi fechado! Caso precise de algo mais é só abrir um novo ticket. Para acompanhar o histórico deste ticket ou abrir um novo, acesse: {}".format(urlAdmin), "Aviso de movimentação de ticket", email)
 
     return redirect('/')
 
@@ -156,11 +159,17 @@ def ticket_aguarda(id):
         ticket.status = "Aguardando"
         ticket.save()
 
+
+
 #Notificações por e-mail
 #Faz a notificação de que um link foi gerado, ou um erro aconteceu.
 import smtplib
+from django.shortcuts import render
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+def view_a(request):
+    return render(request, 'view_a.html')
 
 def pegaEmails(idticket):
     ticket = Tickets.objects.get(id=idticket)
