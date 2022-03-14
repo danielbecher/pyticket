@@ -59,8 +59,9 @@
 }
 
 .tickets__links {
+    font-size: 18px;
     text-decoration: none;
-    color: #154a99;
+    color: #292929;
     padding: 0 2px;
 }
 

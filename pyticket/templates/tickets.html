@@ -10,7 +10,7 @@
         {% for ticket in tickets %}
         {% if ticket.status == 'Aberto' %}
         <li class="tickets__lista--item"> 
-             {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }} [<a class="tickets__links" href="ticket/?id={{ ticket.id }}">Ver</a> | <a class="tickets__links" href="fecha/?id={{ ticket.id }}">Fechar</a>]
+            [<a class="tickets__links" href="fecha/?id={{ ticket.id }}">Fechar</a>] <a class="tickets__links" href="ticket/?id={{ ticket.id }}"> {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }}</a>
         </li>{% endif %} {% endfor %}
     </ul>
 
@@ -18,7 +18,7 @@
         <h3 class="tickets__titulo--subtituloaguardando">Em andamento</h3>
             {% for ticket in tickets %}
             {% if ticket.status == 'Aguardando' %}
-            <li class="tickets__lista--item"> {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }} [<a class="tickets__links" href="ticket/?id={{ ticket.id }}">Ver</a> | <a class="tickets__links"href="fecha/?id={{ ticket.id }}">Fechar</a>]
+            <li class="tickets__lista--item"> [<a class="tickets__links"href="fecha/?id={{ ticket.id }}">Fechar</a>] <a class="tickets__links" href="ticket/?id={{ ticket.id }}">{{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }} </a>
             </li> {% endif %} {% endfor %}
         </h3>
     </ul>
@@ -27,7 +27,7 @@
         <h3 class="tickets__titulo--subtitulofechado">Encerrados</h3>
             {% for ticket in tickets %}
             {% if ticket.status == 'Fechado' %}
-            <li class="tickets__lista--item"> {{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }} [<a class="tickets__links" href="ticket/?id={{ ticket.id }}">Ver</a> | <a class="tickets__links" href="abre/?id={{ ticket.id }}">Reabrir</a>]
+            <li class="tickets__lista--item">[<a class="tickets__links" href="abre/?id={{ ticket.id }}"> Reabrir</a>] <a class="tickets__links" href="ticket/?id={{ ticket.id }}">{{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }}</a>
             </li> {% endif %} {% endfor %}
         </h3>
     </ul>
