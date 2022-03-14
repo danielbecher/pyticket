@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@&y)x7j#v&lw$n_j=$c$!+vb0cbij7iu^zav=u!*s$ddlkwnj0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['IP', 'http://pyticket.becher.com.br, '127.0.0.1']
+ALLOWED_HOSTS = ['IP', 'http://pyticket.becher.com.br', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['http://pyticket.becher.com.br']
 
 # Application definition
