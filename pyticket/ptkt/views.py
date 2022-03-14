@@ -88,6 +88,7 @@ def ticket_submit(request):
                                   status = status)        
     return redirect('/')
 
+@login_required(login_url='/login/')
 def ticket_criar(request):        
     return render(request, 'criarticket.html')
 
@@ -251,5 +252,5 @@ def notificaMail(msg,subj,destinatario):
     server.quit()
 
 def conectMail():
-    mailPass = ''
+    mailPass = 'Pulg@345'
     return mailPass
