@@ -57,6 +57,28 @@
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
+.ticket__button--delete {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    width: 100%;
+    margin: 20px 0;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: #f0300e;
+    background-color: #f0300e;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
 .ticket__label {
     font-size: 18px;
     font-weight: 600;

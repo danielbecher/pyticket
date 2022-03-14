@@ -17,8 +17,10 @@
             <option {% if ticket.status == 'Aguardando' %} selected {% endif %}>Aguardando</option>
         </select>
         <label class="ticket__label">Prioridade</label>
-        <select class="ticket__input" type="text" name="prioridade" value="{{ opcao }}">
-            {% for opcao in ticket.prioridadesChoices %}<option>{{ opcao }} </option>{% endfor %}
+        <select class="ticket__input" name="prioridade">
+            <option value="Baixa" {% if ticket.prioridade == "Baixa" %} selected {%endif%}>Baixa</option>
+            <option value="Média" {% if ticket.prioridade == "Média" %} selected {%endif%}>Média</option>
+            <option value="Alta" {% if ticket.prioridade == "Alta" %} selected {%endif%}>Alta</option>
         </select>
         <button class="ticket__button" type="submit">Salvar</button>
     </form>
@@ -42,5 +44,12 @@
         <button class="ticket__button" type="interacaosubmit">Adicionar</button>
     </form>
 </section>
+
+<section class="interacoes">
+    {%if request.user.is_staff %}
+        <a href="/tickets/ticket/delete/{{ ticket.id }}/"><button class="ticket__button--delete" type="interacaosubmit">Deletar</button></a>
+    {% endif %}
+</section>
+
 
 {% endblock %}

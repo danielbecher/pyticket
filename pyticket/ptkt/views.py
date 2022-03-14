@@ -39,10 +39,14 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def tickets_list(request):
     usuario = request.user
-    data_atual = datetime.now()
-    ticket = Tickets.objects.filter(usuario_id=usuario)
-    dados = {'tickets': ticket}
-    return render(request, 'tickets.html', dados)
+    if usuario.is_staff:
+        ticket = Tickets.objects.all().order_by('-data_abertura')
+        dados = {'tickets': ticket}
+        return render(request, 'tickets.html', dados)
+    else:
+        ticket = Tickets.objects.filter(usuario_id=usuario)
+        dados = {'tickets': ticket}
+        return render(request, 'tickets.html', dados)
 
 @login_required(login_url='/login/')
 def ticket(request):
@@ -70,6 +74,7 @@ def ticket_submit(request):
                 ticket.descricao = descricao
                 ticket.status = status
                 ticket.prioridade = prioridade
+                print(prioridade)
                 ticket.save()
         else:
             Tickets.objects.create(assunto=assunto,
@@ -95,7 +100,7 @@ def ticket_criar_submit(request):
                                   data_abertura=data_abertura,
                                   descricao=descricao,
                                   usuario=usuario,
-                                  prioridade = prioridade,
+                                  prioridade=prioridade,
                                   status = status)      
     
     notificaMail("O usuário {} criou um ticket com a prioridade {}. Veja aqui mesmo este ticket: {}".format(usuario, prioridade, urlAdmin), emailAssuntoCriacao, "daniel@becher.com.br")
@@ -122,7 +127,7 @@ def ticket_delete(request, id_ticket):
         ticket = Tickets.objects.get(id=id_ticket)
     except Exception:
         raise Http404()
-    if usuario == ticket.usuario:
+    if usuario == ticket.usuario or usuario.is_staff:
         ticket.delete()
     else:
         raise Http404()

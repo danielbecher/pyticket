@@ -11,7 +11,7 @@
         <label class="ticket__label">Ocorrência</label>
         <textarea class="ticket__input" name="descricao" rows=10 cols=20>{{ ticket.descricao }}</textarea>
         <label class="ticket__label">Prioridade</label>
-        <select class="ticket__input" type="text" name="prioridade" value="{{ ticket.prioridade }}">
+        <select class="ticket__input" name="prioridade" value="{{ ticket.prioridade }}">
             <option selected>Baixa</option>
             <option>Média</option>
             <option>Alta</option>

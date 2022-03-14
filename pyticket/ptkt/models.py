@@ -4,18 +4,12 @@ from datetime import datetime, timedelta
 
 class Tickets(models.Model):
     #Definindo as escolhas de prioridades
-    prioridadesChoices = (
-        ('1', 'Baixa'),
-        ('2', 'Média'),
-        ('3', 'Alta'),
-    )
-
     assunto = models.CharField(max_length=300, blank=False, null=False)
     descricao = models.TextField(blank=False, null=False)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     data_abertura = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20)
-    prioridade = models.CharField(max_length=1, choices=prioridadesChoices) #prioridades setadas na tupla prioridadesChoices
+    prioridade = models.CharField(max_length=20, blank=False, null=False)
     anexo = models.FileField(upload_to ='uploads/', blank=True, null=True)
 
     def __str__(self):
