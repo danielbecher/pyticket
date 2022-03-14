@@ -1,9 +1,10 @@
 .header {
+    width: 50%;
+    background-color: #0998eb;
+    padding: 10px 10px;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
-    background-color: #e8fdff;
-    padding: 10px 30px;
 }
 
 .header__titulo {
@@ -19,4 +20,16 @@
 .header__lista--item {
     list-style-type: none;
     margin: 3px 20px;
+}
+
+.header__link {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.header__link:hover {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
 }

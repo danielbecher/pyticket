@@ -13,15 +13,16 @@
     <link rel="stylesheet" href="{% static '/css/ticket.css' %}">
 </head>
 <body>
-    <header class="header">
-        <p class="header__titulo">Sistema de Tickets</p>
+    <section class="header">
+        <!-- <p class="header__titulo">Sistema de Tickets</p>-->
+        <img class="header__imagem" src="{% static '/img/logo.png'%} ">
         <nav class="header__menu">
             <ul class="header__lista">
-                <li class="header__lista--item"><a href="/tickets">Home</a></li>
-                <li class="header__lista--item"><a href="/tickets/criarticket">Criar um ticket</a></li>
-                <li class="header__lista--item"><a href="https://github.com/danielbecher/pyticket">Repositório</a></li>
-                <li class="header__lista--item"><a href="/admin">Admin</a></li>
-                <li class="header__lista--item"><a href="/logout">Deslogar</a></li>
+                <li class="header__lista--item"><a class="header__link" href="/tickets">Home</a></li>
+                <li class="header__lista--item"><a class="header__link" href="/tickets/criarticket">Criar um ticket</a></li>
+                <li class="header__lista--item"><a class="header__link" href="https://github.com/danielbecher/pyticket">Repositório</a></li>
+                <li class="header__lista--item"><a class="header__link" href="/admin">Admin</a></li>
+                <li class="header__lista--item"><a class="header__link" href="/logout">Deslogar</a></li>
             </ul>
         </nav>
-    </header>  
+    </section>  

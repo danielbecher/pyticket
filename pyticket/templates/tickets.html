@@ -2,8 +2,7 @@
 
 {% block content %}
 
-<main class="tickets">
-    <p class="tickets__titulo--headline">Olá, {{ user.get_short_name }}. Como posso te ajudar?</p>
+<section class="tickets">
     <h2 class="tickets__titulo">Todos os tickets</h2>
     
     <ul class="tickets__lista--abertos">
@@ -32,5 +31,5 @@
             </li> {% endif %} {% endfor %}
         </h3>
     </ul>
-</main>
+</section>
 {% endblock %}

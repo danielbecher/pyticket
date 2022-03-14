@@ -1,3 +1,7 @@
+.tickets {
+    width: 50%;
+}
+
 .tickets__titulo {
     display: flex;
     justify-content: center;
@@ -10,19 +14,19 @@
 }
 
 .tickets__titulo--subtitulo {
-    background-color: #f0faff;
+    background-image: linear-gradient(to left, rgba(255,0,0,0), #def4ff);
     display: flex;
     padding: 7px 15px; 
 }
 
 .tickets__titulo--subtituloaguardando {
-    background-color: #ffe8d4;
+    background-image: linear-gradient(to left, rgba(255,0,0,0), #ffe8d4);
     display: flex;
     padding: 7px 15px;  
 }
 
 .tickets__titulo--subtitulofechado {
-    background-color: #ffe6e3;
+    background-image: linear-gradient(to left, rgba(255,0,0,0), #ffe6e3);
     display: flex;
     padding: 7px 15px;
 }

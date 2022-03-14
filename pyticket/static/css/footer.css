@@ -1,0 +1,29 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    background-color: #edfaf9;
+    padding: 10px 10px;
+}
+
+.footer__frase {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer__subfrase {
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: #3629f0;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
