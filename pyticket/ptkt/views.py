@@ -223,7 +223,7 @@ def pegaEmailStaffs():
     for user in usuarios:
         if user not in staffs:
             staffs.append(user.email)
-
+            
     return staffs
     
 
