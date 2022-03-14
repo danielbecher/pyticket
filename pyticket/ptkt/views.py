@@ -7,7 +7,10 @@ from datetime import datetime
 from django.http.response import Http404
 
 urlAdmin = "http://localhost:8000"
-emailAssuntoCriacao = "Alerta de novo ticket criado"
+emailAssuntosUsuarios = ["Alerta de novo ticket criado", "Você criou um novo ticket e em breve ele será analisado por alguém do suporte. Para acompanhar, acesse http://localhost:8000", "Seu ticket recebeu uma resposta", "Seu ticket foi respondido, é possível que você precise respondê-lo ou encerrá-lo. Para verificar, acesse http://localhost:8000",
+                "Ticket encerrado", "Seu ticket foi encerrado. Para visualizar o histórico, acesse https://localhost:8000"]
+
+emailAssuntosStaffs = ["Alerta de novo ticket criado", "Um usuário abriu um ticket. Acesse o painel de administração e verifique", "Um ticket foi respondido", "Um usuário respondeu um ticket. Acesse o painel de administração e verifique", "Ticket encerrado", "Um ticket foi encerrado. Para visualizar o histórico, acesse o painel de administração"]
 
 def login_user(request):
     return render(request, 'login.html')
@@ -38,9 +41,10 @@ def logout_user(request):
 
 @login_required(login_url='/login/')
 def tickets_list(request):
+    pegaEmailStaffs()
     usuario = request.user
     if usuario.is_staff:
-        ticket = Tickets.objects.all().order_by('-data_abertura')
+        ticket = Tickets.objects.all().order_by('-data_abertura').order_by('prioridade')
         dados = {'tickets': ticket}
         return render(request, 'tickets.html', dados)
     else:
@@ -74,7 +78,6 @@ def ticket_submit(request):
                 ticket.descricao = descricao
                 ticket.status = status
                 ticket.prioridade = prioridade
-                print(prioridade)
                 ticket.save()
         else:
             Tickets.objects.create(assunto=assunto,
@@ -103,7 +106,10 @@ def ticket_criar_submit(request):
                                   prioridade=prioridade,
                                   status = status)      
     
-    notificaMail("O usuário {} criou um ticket com a prioridade {}. Veja aqui mesmo este ticket: {}".format(usuario, prioridade, urlAdmin), emailAssuntoCriacao, "daniel@becher.com.br")
+    staffs = pegaEmailStaffs()
+    for staff in staffs:
+        notificaMail(emailAssuntosStaffs[1],emailAssuntosStaffs[0],staff)
+    notificaMail(emailAssuntosUsuarios[1], emailAssuntosUsuarios[0],usuario.email)
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -114,10 +120,17 @@ def interacao_submit(request):
     Interacoes.objects.create(id_usuario=usuario,
                                 chamado_id=id_ticket,
                                 interacao=resposta)
+    
     ticket_aguarda(id_ticket)
+
     emailsnotify = pegaEmails(id_ticket)
     for email in emailsnotify:
-        notificaMail("Olá! Tem uma nova interação para o seu ticket número {}. Para ler e responder, acesse: {}".format(id_ticket, "https://localhost:8000/"), "Aviso de movimentação de ticket", email)
+        notificaMail(emailAssuntosUsuarios[3], emailAssuntosUsuarios[2], email)
+    
+    staffs = pegaEmailStaffs()
+    for staff in staffs:
+        notificaMail(emailAssuntosStaffs[3], emailAssuntosStaffs[2],staff)
+    
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -140,10 +153,14 @@ def ticket_fecha(request):
     if ticketid:
         ticket.status = "Fechado"
         ticket.save()
-    
+
     emailsnotify = pegaEmails(ticketid)
     for email in emailsnotify:
-        notificaMail("Olá! O seu ticket foi fechado! Caso precise de algo mais é só abrir um novo ticket. Para acompanhar o histórico deste ticket ou abrir um novo, acesse: {}".format(urlAdmin), "Aviso de movimentação de ticket", email)
+        notificaMail(emailAssuntosUsuarios[5], emailAssuntosUsuarios[4],email)
+
+    staffs = pegaEmailStaffs()
+    for staff in staffs:
+        notificaMail(emailAssuntosUsuarios[5], emailAssuntosUsuarios[4],staff)
 
     return redirect('/')
 
@@ -164,8 +181,6 @@ def ticket_aguarda(id):
         ticket.status = "Aguardando"
         ticket.save()
 
-
-
 #Notificações por e-mail
 #Faz a notificação de que um link foi gerado, ou um erro aconteceu.
 import smtplib
@@ -183,22 +198,33 @@ def pegaEmails(idticket):
     emailsinteracoes = []
 
     for usuarios in interacoes:
-        if usuarios not in usuariosInteracoes:
+        useradd = usuarios.id_usuario
+        if useradd not in usuariosInteracoes:
             usuariosInteracoes.append(usuarios.id_usuario)
-    
+        
     for usr in usuariosInteracoes:
         if usr not in emailsinteracoes:
             emailsinteracoes.append(pegaUsuario(usr))
     
     if pegaUsuario(ticket.usuario) not in emailsinteracoes:
         emailsinteracoes.append(pegaUsuario(ticket.usuario))
-
-    return emailsinteracoes
     
+    print(emailsinteracoes)
+    return emailsinteracoes
+
 def pegaUsuario(user):
     usuario = User.objects.get(username=user)
     email = usuario.email
     return email
+
+def pegaEmailStaffs():
+    staffs = []
+    usuarios = User.objects.all().filter(is_staff=True)
+    for user in usuarios:
+        if user not in staffs:
+            staffs.append(user.email)
+
+    return staffs
     
 
 def notificaMail(msg,subj,destinatario):

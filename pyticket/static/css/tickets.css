@@ -2,6 +2,12 @@
     width: 50%;
 }
 
+.tickets__icone {
+    width: 18x;
+    height: 18px;
+    padding: 0 4px;
+}
+
 .tickets__titulo {
     display: flex;
     justify-content: center;
