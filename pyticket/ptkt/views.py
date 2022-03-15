@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from ptkt.models import Tickets, Interacoes, User
+from ptkt.models import Tickets, Interacoes, User, Notificacoes
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages

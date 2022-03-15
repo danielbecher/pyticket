@@ -1,6 +1,5 @@
 from django.contrib import admin
-from ptkt.models import Tickets, Interacoes
-from pyticket.ptkt.models import Notificacoes
+from ptkt.models import Tickets, Interacoes, Notificacoes
 
 class ticketsAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'assunto', 'status', 'prioridade', 'data_abertura')
