@@ -211,7 +211,6 @@ def pegaEmails(idticket):
     if pegaUsuario(ticket.usuario) not in emailsinteracoes:
         emailsinteracoes.append(pegaUsuario(ticket.usuario))
     
-    print(emailsinteracoes)
     return emailsinteracoes
 
 def pegaUsuario(user):
