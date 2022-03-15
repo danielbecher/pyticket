@@ -47,7 +47,7 @@
     border: unset;
     border-radius: 4px;
     outline-color: rgb(84 105 212 / 0.5);
-    background-color: rgb(84 105 212 / 0.5);
+    background-color: rgba(9, 47, 236, 0.815);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
@@ -55,6 +55,10 @@
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.login__button:hover {
+    background-color: rgba(10, 41, 199, 0.5);
 }
 
 .ticket__button--delete {
@@ -69,7 +73,7 @@
     border: unset;
     border-radius: 4px;
     outline-color: #f0300e;
-    background-color: #f0300e;
+    background-color: #ec5d44;
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
@@ -77,6 +81,10 @@
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.ticket__button--delete:hover {
+    background-color: #e92b0a;
 }
 
 .ticket__label {
