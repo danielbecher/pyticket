@@ -44,11 +44,11 @@ class Interacoes(models.Model):
     def __str__(self):
         return self.chamado
 
-class ConfigNotifica(models.Model):
+class Notificacoes(models.Model):
     host = models.CharField(max_length=250)
     porta = models.CharField(max_length=5)
     usuario = models.CharField(max_length=100)
-    senha = models.CharField(widget=forms.PasswordInput)
+    senha = models.CharField(max_length=100)
 
     def __str__(self):
         return self.host
