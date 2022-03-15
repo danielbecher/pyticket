@@ -36,7 +36,7 @@
 </section>
 
 <section class="resposta">
-    <h3 class="ticket__interacao--textosub">Adicionar resposta</h3>
+    <!-- <h3 class="ticket__interacao--textosub">Adicionar resposta</h3> -->
     <form action="interacaosubmit" method="POST">{% csrf_token %}
         <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
         <label class="ticket__label">Resposta</label>
