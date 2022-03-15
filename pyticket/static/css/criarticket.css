@@ -65,7 +65,6 @@
 }
 
 .ticket__button--delete {
-    display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
