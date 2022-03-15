@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta
+from django import forms
 
 class Tickets(models.Model):
     #Definindo as escolhas de prioridades
@@ -42,3 +43,12 @@ class Interacoes(models.Model):
 
     def __str__(self):
         return self.chamado
+
+class ConfigNotifica(models.Model):
+    host = models.CharField(max_length=250)
+    porta = models.CharField(max_length=5)
+    usuario = models.CharField(max_length=100)
+    senha = models.CharField(widget=forms.PasswordInput)
+
+    def __str__(self):
+        return self.host

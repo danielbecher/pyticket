@@ -230,6 +230,7 @@ def pegaEmailStaffs():
     
 
 def notificaMail(msg,subj,destinatario):
+    
     senha = conectMail()
     host = 'smtp.gmail.com'
     port = 587
