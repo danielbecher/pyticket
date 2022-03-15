@@ -59,6 +59,7 @@
 .tickets__lista--item {
     display: flex;
     padding: 5px 5px;
+    margin: 3px;
 }
 
 .tickets__lista--itemfechado {
