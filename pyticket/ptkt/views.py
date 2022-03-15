@@ -236,19 +236,15 @@ def notificaMail(msg,subj,destinatario):
     senha = conexao.senha
     porta = conexao.porta
     server = smtplib.SMTP(host,porta)
-
     server.ehlo()
     server.starttls()
     server.login(usuario, senha)
-
     message = msg
     subject = subj
     email_msg = MIMEMultipart()
     email_msg['From'] = usuario
     email_msg['To'] = destinatario
     email_msg['Subject'] = subject
-
     email_msg.attach(MIMEText(message, 'plain'))
-
     server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
     server.quit()
