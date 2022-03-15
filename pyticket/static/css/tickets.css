@@ -1,5 +1,5 @@
 .tickets {
-    width: 50%;
+    width: 55%;
 }
 
 .tickets__icone {
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     font-size: 28px;
-    margin: 3px 0;
+    margin: 15px 0;
 }
 
 .tickets__titulo--headline {
@@ -41,18 +41,19 @@
 .tickets__lista--abertos {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 .tickets__lista--aguardando {
     display: flex;
     flex-direction: column;   
+    margin-top: 20px;
 }
 
 .tickets__lista--fechados {
     display: flex;
     flex-direction: column;
-    
+    margin-top: 20px;
 }
 
 .tickets__lista--item {
