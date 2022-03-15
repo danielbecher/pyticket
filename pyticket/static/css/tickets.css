@@ -75,6 +75,13 @@
     padding: 0 2px;
 }
 
+.tickets__links--fechado {
+    font-size: 18px;
+    text-decoration: none;
+    color: #7e8187;
+    padding: 0 2px;
+}
+
 .tickets__links:hover {
     text-decoration: underline;
     font-weight: bold;
