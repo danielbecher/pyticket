@@ -41,19 +41,17 @@
 .tickets__lista--abertos {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 100px;
 }
 
 .tickets__lista--aguardando {
     display: flex;
     flex-direction: column;   
-    margin-top: 10px;
 }
 
 .tickets__lista--fechados {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
     
 }
 
