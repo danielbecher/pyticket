@@ -24,7 +24,6 @@
     background-image: linear-gradient(to left, rgba(255,0,0,0), #def4ff);
     display: flex;
     padding: 7px 15px; 
-    margin-top: 20px
 }
 
 .tickets__titulo--subtituloaguardando {
@@ -42,16 +41,19 @@
 .tickets__lista--abertos {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .tickets__lista--aguardando {
     display: flex;
     flex-direction: column;   
+    margin-top: 10px;
 }
 
 .tickets__lista--fechados {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
     
 }
 
