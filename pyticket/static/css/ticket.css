@@ -24,6 +24,7 @@
 
 .ticket__subtitulo {
     text-align: center;
+    margin: 15px 0;
 }
 
 .ticket__subtitulo--data {
