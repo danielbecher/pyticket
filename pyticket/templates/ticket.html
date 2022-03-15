@@ -3,7 +3,7 @@
 {% block content %}
 <section class="ticket">
     <h2 class="ticket__titulo">Ticket # {{ ticket.id }} - {{ ticket.get_data_ticket }} {{ ticket.get_hora_ticket }}</h2>
-    <h3 class="ticket__subtitulo">Criado por {{ ticket.usuario}}</h3>
+    <h3 class="ticket__subtitulo--author">Criado por {{ ticket.usuario}}</h3>
     <form action="submit" method="POST">{% csrf_token %}
         <input type="text" name="id_ticket" value="{{ ticket.id }}" hidden>
         <label class="ticket__label">Assunto</label>
