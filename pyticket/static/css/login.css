@@ -61,6 +61,10 @@
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
+.login__button:hover {
+    background-color: rgba(10, 41, 199, 0.5);
+}
+
 .login__label {
     font-size: 18px;
     font-weight: 600;
