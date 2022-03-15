@@ -36,6 +36,9 @@
 }
 
 .ticket__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     font-weight: bold;
     font-size: 16px;
@@ -62,6 +65,9 @@
 }
 
 .ticket__button--delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     font-weight: bold;
     font-size: 16px;
