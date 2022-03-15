@@ -21,7 +21,7 @@
         <nav class="header__menu">
             <ul class="header__lista">
                 <li class="header__lista--item"><a class="header__link" href="/tickets">Home</a></li>
-                <li class="header__lista--item"><a class="header__link" href="/tickets/criarticket">Novo ticket</a></li>
+                {% if request.user.is_authenticated %}<li class="header__lista--item"><a class="header__link" href="/tickets/criarticket">Novo ticket</a></li>{% endif %}
                 <!--<li class="header__lista--item"><a class="header__link" href="https://github.com/danielbecher/pyticket">Repositório</a></li>-->
                 {% if request.user.is_staff %}<li class="header__lista--item"><a class="header__link" href="/admin">Admin</a></li>{% endif %}
                 {% if request.user.is_authenticated %}<li class="header__lista--item"><a class="header__link" href="/logout">Deslogar</a></li>{% endif %}
