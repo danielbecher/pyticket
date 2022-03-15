@@ -6,6 +6,8 @@ from django.contrib import messages
 from datetime import datetime
 from django.http.response import Http404
 
+from pyticket.ptkt.models import Notificacoes
+
 #seta url
 urlAdmin = "http://pyticket.becher.com.br"
 emailAssuntosUsuarios = ["Alerta de novo ticket criado", "Você criou um novo ticket e em breve ele será analisado por alguém do suporte. Para acompanhar, acesse http://localhost:8000", "Seu ticket recebeu uma resposta", "Seu ticket foi respondido, é possível que você precise respondê-lo ou encerrá-lo. Para verificar, acesse http://localhost:8000",
@@ -230,21 +232,21 @@ def pegaEmailStaffs():
     
 
 def notificaMail(msg,subj,destinatario):
-    
-    senha = conectMail()
-    host = 'smtp.gmail.com'
-    port = 587
-    user = 'ti@sotepa.com.br'
-    server = smtplib.SMTP(host,port)
+    conexao = Notificacoes.objects.get(id=1)
+    host = conexao.host
+    usuario = conexao.usuario
+    senha = conexao.senha
+    porta = conexao.porta
+    server = smtplib.SMTP(host,porta)
 
     server.ehlo()
     server.starttls()
-    server.login(user, senha)
+    server.login(usuario, senha)
 
     message = msg
     subject = subj
     email_msg = MIMEMultipart()
-    email_msg['From'] = user
+    email_msg['From'] = usuario
     email_msg['To'] = destinatario
     email_msg['Subject'] = subject
 
@@ -252,7 +254,3 @@ def notificaMail(msg,subj,destinatario):
 
     server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
     server.quit()
-
-def conectMail():
-    mailPass = 'Pulg@345'
-    return mailPass
