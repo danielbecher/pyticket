@@ -22,6 +22,10 @@
     font-size: 12px;
 }
 
+.ticket__interacao--textosub {
+    margin-top: 10px;
+}
+
 .ticket__subtitulo {
     text-align: center;
     margin: 15px 0;
