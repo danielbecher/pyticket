@@ -8,8 +8,8 @@ from django.http.response import Http404
 
 #seta url
 urlAdmin = "http://pyticket.becher.com.br"
-emailAssuntosUsuarios = ["Alerta de novo ticket criado", "Você criou um novo ticket e em breve ele será analisado por alguém do suporte. Para acompanhar, acesse http://localhost:8000", "Seu ticket recebeu uma resposta", "Seu ticket foi respondido, é possível que você precise respondê-lo ou encerrá-lo. Para verificar, acesse http://localhost:8000",
-                "Ticket encerrado", "Seu ticket foi encerrado. Para visualizar o histórico, acesse https://localhost:8000"]
+emailAssuntosUsuarios = ["Alerta de novo ticket criado", "Você criou um novo ticket e em breve ele será analisado por alguém do suporte. Para acompanhar, acesse http://pyticket.becher.com.br", "Seu ticket recebeu uma resposta", "Seu ticket foi respondido, é possível que você precise respondê-lo ou encerrá-lo. Para verificar, acesse http://pyticket.becher.com.br",
+                "Ticket encerrado", "Seu ticket foi encerrado. Para visualizar o histórico, acesse http://pyticket.becher.com.br"]
 
 emailAssuntosStaffs = ["Alerta de novo ticket criado", "Um usuário abriu um ticket. Acesse o painel de administração e verifique", "Um ticket foi respondido", "Um usuário respondeu um ticket. Acesse o painel de administração e verifique", "Ticket encerrado", "Um ticket foi encerrado. Para visualizar o histórico, acesse o painel de administração"]
 
