@@ -2,6 +2,7 @@
 {% include "header.html" %}
 
 <section class="criarusuario">
+    <h2 class="criarusuario__titulo">Novo usuário</h2>
     <form class="criarusuario__form" action="submit" method="POST">{% csrf_token %} 
             <label class="criarusuario__label">Usuário</label>
             <input class="criarusuario__input" type="text" name="usuario">

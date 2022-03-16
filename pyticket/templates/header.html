@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{% static '/css/footer.css' %}">
     <link rel="stylesheet" href="{% static '/css/ticket.css' %}">
     <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <link rel="stylesheet" href="{% static '/css/criarusuario.css' %}">
     <link rel="stylesheet" href="{% static '/css/reset.css' %}">
+    
 </head>
 <body>
     <section class="header">
@@ -21,6 +23,7 @@
         <nav class="header__menu">
             <ul class="header__lista">
                 <li class="header__lista--item"><a class="header__link" href="/tickets">Home</a></li>
+                {% if request.user.is_authenticated == False %}<li class="header__lista--item"><a class="header__link" href="/criarusuario">Novo usuário</a></li>{% endif %}
                 {% if request.user.is_authenticated %}<li class="header__lista--item"><a class="header__link" href="/tickets/criarticket">Novo ticket</a></li>{% endif %}
                 <!--<li class="header__lista--item"><a class="header__link" href="https://github.com/danielbecher/pyticket">Repositório</a></li>-->
                 {% if request.user.is_staff %}<li class="header__lista--item"><a class="header__link" href="/admin">Admin</a></li>{% endif %}

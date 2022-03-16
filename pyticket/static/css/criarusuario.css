@@ -1,0 +1,100 @@
+.criarusuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.criarusuario__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.criarusuario__titulo {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    font-size: 28px
+}
+
+.criarusuario__label {
+    font-size: 18px;
+    font-weight: 600;
+    display: block;
+    margin: 0.7rem 0;
+}
+
+.criarusuario__input {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 8px 16px;
+    width: 500px;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: rgb(84 105 212 / 0.5);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.criarusuario__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 28px;
+    width: 300px;
+    padding: 8px 16px;
+    margin: 20px 0;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: rgb(101, 126, 250);
+    background-color: rgba(9, 47, 236, 0.815);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.criarusuario__button:hover {
+    background-color: rgba(10, 41, 199, 0.5);
+}
+
+.criarusuario__button--delete {
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    width: 300px;
+    margin: 20px 0;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: #f39281;
+    background-color: #f39281;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.criarusuario__button--delete:hover {
+    background-color: #e92b0a;
+}

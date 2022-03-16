@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime
 from django.http.response import Http404
+from threading import Thread
 
 #seta url
 urlAdmin = "http://pyticket.becher.com.br"
@@ -39,14 +40,13 @@ def criar_usuario_submit(request):
         criaemail = request.POST.get('email')
         criafirstname = request.POST.get('primeironome')
         crialastname = request.POST.get('ultimonome')
-        User.objects.create(username=criausername,
+        novoUsuario = User.objects.create_user(username=criausername,
                             password=criapassword,
                             email=criaemail,
                             first_name=criafirstname,
-                            last_name=crialastname,
-                            is_superuser=0,
-                            is_staff=0,
-                            is_active=1)
+                            last_name=crialastname)
+        novoUsuario.save()
+
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -131,8 +131,10 @@ def ticket_criar_submit(request):
     
     staffs = pegaEmailStaffs()
     for staff in staffs:
-        notificaMail(emailAssuntosStaffs[1],emailAssuntosStaffs[0],staff)
-    notificaMail(emailAssuntosUsuarios[1], emailAssuntosUsuarios[0],usuario.email)
+        tn1 = Thread(target=notificaMail, args=(emailAssuntosStaffs[1],emailAssuntosStaffs[0],staff))
+        tn1.start()
+    tn2 = Thread(target=notificaMail, args=(emailAssuntosUsuarios[1], emailAssuntosUsuarios[0],usuario.email))
+    tn2.start()
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -148,11 +150,13 @@ def interacao_submit(request):
 
     emailsnotify = pegaEmails(id_ticket)
     for email in emailsnotify:
-        notificaMail(emailAssuntosUsuarios[3], emailAssuntosUsuarios[2], email)
+        ti1 = Thread(target=notificaMail, args=(emailAssuntosUsuarios[3], emailAssuntosUsuarios[2], email))
+        ti1.start()
     
     staffs = pegaEmailStaffs()
     for staff in staffs:
-        notificaMail(emailAssuntosStaffs[3], emailAssuntosStaffs[2],staff)
+        ti2 = Thread(target=notificaMail, args=(emailAssuntosStaffs[3], emailAssuntosStaffs[2],staff))
+        ti2.start()
     
     return redirect('/')
 
@@ -179,11 +183,13 @@ def ticket_fecha(request):
 
     emailsnotify = pegaEmails(ticketid)
     for email in emailsnotify:
-        notificaMail(emailAssuntosUsuarios[5], emailAssuntosUsuarios[4],email)
+        tf1 = Thread(target=notificaMail, args=(emailAssuntosUsuarios[5], emailAssuntosUsuarios[4],email))
+        tf1.start()
 
     staffs = pegaEmailStaffs()
     for staff in staffs:
-        notificaMail(emailAssuntosUsuarios[5], emailAssuntosUsuarios[4],staff)
+        tf2 = Thread(target=notificaMail, args=(emailAssuntosUsuarios[5], emailAssuntosUsuarios[4],staff))
+        tf2.start()
 
     return redirect('/')
 
