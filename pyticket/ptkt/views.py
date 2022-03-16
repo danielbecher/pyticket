@@ -29,7 +29,10 @@ def submit_login(request):
     return redirect('/')
 
 #Aqui não usaremos decorador por motivos óbvios, é a criação de usuários
-def criar_usuario(request):
+def criar_usuario(request):        
+    return render(request, 'criarusuario.html')
+
+def criar_usuario_submit(request):
     if request.POST:
         criausername = request.POST.get('usuario')
         criapassword = request.POST.get('senha')
