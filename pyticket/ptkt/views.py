@@ -28,6 +28,24 @@ def submit_login(request):
             messages.error(request, "Usuário ou senha inválidos!")
     return redirect('/')
 
+#Aqui não usaremos decorador por motivos óbvios, é a criação de usuários
+def criar_usuario(request):
+    if request.POST:
+        criausername = request.POST.get('usuario')
+        criapassword = request.POST.get('senha')
+        criaemail = request.POST.get('email')
+        criafirstname = request.POST.get('primeironome')
+        crialastname = request.POST.get('ultimonome')
+        User.objects.create(username=criausername,
+                            password=criapassword,
+                            email=criaemail,
+                            first_name=criafirstname,
+                            last_name=crialastname,
+                            is_superuser=0,
+                            is_staff=0,
+                            is_active=1)
+    return redirect('/')
+
 @login_required(login_url='/login/')
 def tickets(request):
     id_tickets = request.GET.get('id')
@@ -175,8 +193,9 @@ def ticket_abre(request):
         ticket.save()
     return redirect('/')
 
-
-#Funções sem rota
+#############################################
+### Funções sem rota
+#############################################
 def ticket_aguarda(id):
     ticket = Tickets.objects.get(id=id)
     if id:

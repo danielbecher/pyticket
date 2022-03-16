@@ -1,0 +1,23 @@
+{% load static %}
+{% include "header.html" %}
+
+<section class="criarusuario">
+    <form class="criarusuario__form" action="submit" method="POST">{% csrf_token %} 
+            <label class="criarusuario__label">Usuário</label>
+            <input class="criarusuario__input" type="text" name="usuario">
+            <label class="criarusuario__label">Senha</label>
+            <input class="criarusuario__input" type="password" name="senha">
+            <label class="criarusuario__label">Primeiro nome</label>
+            <input class="criarusuario__input" type="text" name="primeironome">
+            <label class="criarusuario__label">Último nome</label>
+            <input class="criarusuario__input" type="text" name="ultimonome">
+            <label class="criarusuario__label">E-mail</label>
+            <input class="criarusuario__input" type="email" name="email">
+            <button class="criarusuario__button" type="criar_usuario">Registrar</button>
+            {% for message in messages %}
+                <p class="criarusuario__erro">Erro: {{ message }}</p>
+            {% endfor %}
+        </form>
+</section>
+
+{% include "footer.html" %}
