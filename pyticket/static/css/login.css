@@ -74,3 +74,10 @@
     display: block;
     margin: 0.7rem 0;
 }
+
+.login__erro {
+    padding: 5px 5px;
+    background-color: #b81a06;
+    border-radius: 4px;
+    color: #fdfdfd;
+}
