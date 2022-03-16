@@ -257,7 +257,7 @@ def pegaEmailStaffs():
     
 
 def notificaMail(msg,subj,destinatario):
-    conexao = Notificacoes.objects.get(id=1)
+    conexao = Notificacoes.objects.get()
     host = conexao.host
     usuario = conexao.usuario
     senha = conexao.senha
