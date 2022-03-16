@@ -67,11 +67,17 @@ def tickets_list(request):
     usuario = request.user
     if usuario.is_staff:
         ticket = Tickets.objects.all().order_by('-data_abertura').order_by('prioridade')
-        dados = {'tickets': ticket}
+        ticketf = Tickets.objects.filter(status="Fechado").order_by('-data_abertura')[:5]
+        dados = {'tickets': ticket,
+                'ticketsf': ticketf,
+                'range':range(10)}
         return render(request, 'tickets.html', dados)
     else:
         ticket = Tickets.objects.filter(usuario_id=usuario)
-        dados = {'tickets': ticket}
+        ticketf = Tickets.objects.filter(status="Fechado").order_by('-data_abertura')[:5]
+        dados = {'tickets': ticket,
+                'ticketsf': ticketf,
+                'range':range(10)}
         return render(request, 'tickets.html', dados)
 
 @login_required(login_url='/login/')

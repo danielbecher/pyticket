@@ -25,10 +25,10 @@
 
     <ul class="tickets__lista--fechados">
         <h3 class="tickets__titulo--subtitulofechado">Encerrados</h3>
-            {% for ticket in tickets %}
-            {% if ticket.status == 'Fechado' %}
-            <li class="tickets__lista--itemfechado">[<a class="tickets__links--fechado" href="abre/?id={{ ticket.id }}"> Reabrir</a>] <a class="tickets__links--fechado" href="ticket/?id={{ ticket.id }}">{{ ticket.assunto }} - {{ ticket.get_data_ticket }} às {{ ticket.get_hora_ticket }} por {{ ticket.get_nome_usuario }}</a>
-            </li> {% endif %} {% endfor %}
+            {% for ticketf in ticketsf %}
+            {% if ticketf.status == 'Fechado' %}
+            <li class="tickets__lista--itemfechado">[<a class="tickets__links--fechado" href="abre/?id={{ ticket.id }}"> Reabrir</a>] <a class="tickets__links--fechado" href="ticket/?id={{ ticket.id }}">{{ ticketf.assunto }}</a>
+            </li>{% endif %} {% endfor %}
         </h3>
     </ul>
 </section>
