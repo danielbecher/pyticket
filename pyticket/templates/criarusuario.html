@@ -5,15 +5,15 @@
     <h2 class="criarusuario__titulo">Novo usuário</h2>
     <form class="criarusuario__form" action="submit" method="POST">{% csrf_token %} 
             <label class="criarusuario__label">Usuário</label>
-            <input class="criarusuario__input" type="text" name="usuario">
+            <input class="criarusuario__input" type="text" name="usuario" required>
             <label class="criarusuario__label">Senha</label>
-            <input class="criarusuario__input" type="password" name="senha">
+            <input class="criarusuario__input" type="password" name="senha" required>
             <label class="criarusuario__label">Primeiro nome</label>
-            <input class="criarusuario__input" type="text" name="primeironome">
+            <input class="criarusuario__input" type="text" name="primeironome" required>
             <label class="criarusuario__label">Último nome</label>
-            <input class="criarusuario__input" type="text" name="ultimonome">
+            <input class="criarusuario__input" type="text" name="ultimonome" required>
             <label class="criarusuario__label">E-mail</label>
-            <input class="criarusuario__input" type="email" name="email">
+            <input class="criarusuario__input" type="email" name="email" required placeholder="seumelhor@email.com.br">
             <button class="criarusuario__button" type="criar_usuario">Registrar</button>
             {% for message in messages %}
                 <p class="criarusuario__erro">Erro: {{ message }}</p>
