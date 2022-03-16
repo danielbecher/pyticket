@@ -36,6 +36,10 @@
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
+.ticket__input:focus {
+    background-color: #f2f7ff;
+}
+
 .ticket__button {
     display: flex;
     align-items: center;
