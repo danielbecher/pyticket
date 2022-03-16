@@ -25,7 +25,7 @@ urlpatterns = [
     path('login/submit', views.submit_login),
     path('logout/', views.logout_user),
     path('criarusuario/', views.criar_usuario),
-    path('criarusuario/criarsubmit', views.criar_usuario_submit),
+    path('criarusuario/submit', views.criar_usuario_submit),
     path('tickets/', views.tickets_list),
     path('tickets/ticket/', views.ticket),
     path('tickets/criarticket/', views.ticket_criar),
