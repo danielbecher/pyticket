@@ -69,15 +69,13 @@ def tickets_list(request):
         ticket = Tickets.objects.all().order_by('-data_abertura').order_by('prioridade')
         ticketf = Tickets.objects.filter(status="Fechado").order_by('-data_abertura')[:5]
         dados = {'tickets': ticket,
-                'ticketsf': ticketf,
-                'range':range(10)}
+                'ticketsf': ticketf}
         return render(request, 'tickets.html', dados)
     else:
         ticket = Tickets.objects.filter(usuario_id=usuario)
         ticketf = Tickets.objects.filter(status="Fechado").order_by('-data_abertura')[:5]
         dados = {'tickets': ticket,
-                'ticketsf': ticketf,
-                'range':range(10)}
+                'ticketsf': ticketf}
         return render(request, 'tickets.html', dados)
 
 @login_required(login_url='/login/')

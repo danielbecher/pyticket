@@ -14,9 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from ptkt import views
 from django.views.generic import RedirectView
+
+from rest_framework import routers
+from ptkt.api import viewsets as ticketsviewsets
+
+route = routers.DefaultRouter()
+route.register(r'ticketsapi/', ticketsviewsets.PtktViewSet, basename='Tickets')
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/tickets')),
@@ -36,4 +42,6 @@ urlpatterns = [
     path('tickets/fecha/', views.ticket_fecha),
     path('tickets/abre/', views.ticket_abre),
     path('tickets/aguarda/', views.ticket_aguarda),
+    #API
+    path('ticketsapi/', include(route.urls)),
 ]
