@@ -1,8 +1,12 @@
 .ticket {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ticket__interacao {
+    width: 500px;
 }
 
 .ticket__interacao:nth-child(2n) {
@@ -15,11 +19,13 @@
 }
 
 .ticket__interacao--texto {
+    width: 500px;
     font-size: 17px;
 }
 
 .ticket__interacao--data {
     font-size: 12px;
+    background: #f7fbff;
 }
 
 .ticket__interacao--textosub {
@@ -42,18 +48,15 @@
 }
 
 .interacoes {
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .ticket__interacao {
-    width: 50%;
 }
 
 .respostas {
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
